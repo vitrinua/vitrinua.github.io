@@ -1,0 +1,588 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tolva Seventy-Five</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: a fixed 3D stage behind the page; each scroll section parks one text panel on alternating sides while the keyboard turns to the part it describes. */
+:root{
+  --bg:#e5e9e3;
+  --bg-2:#d9ded6;
+  --fg:#1b201c;
+  --muted:#58615a;
+  --line:rgba(27,32,28,.14);
+  --card:rgba(244,246,242,.78);
+  --accent:#2c51c4;
+  --accent-ink:#ffffff;
+  --cap:#f4efe4;
+  --cap-edge:#c9c1b0;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111513;--bg-2:#171c19;--fg:#e7ebe6;--muted:#97a29a;--line:rgba(231,235,230,.13);
+    --card:rgba(22,27,24,.8);--accent:#7f9bff;--accent-ink:#0f1430;--cap:#2a302c;--cap-edge:#0b0d0c;color-scheme:dark}
+}
+:root[data-theme="dark"]{
+  --bg:#111513;--bg-2:#171c19;--fg:#e7ebe6;--muted:#97a29a;--line:rgba(231,235,230,.13);
+  --card:rgba(22,27,24,.8);--accent:#7f9bff;--accent-ink:#0f1430;--cap:#2a302c;--cap-edge:#0b0d0c;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+
+#stage3d{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto;width:100%}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{font-family:var(--display);font-variation-settings:"wdth" 125;font-weight:800;font-size:20px;letter-spacing:.02em;text-decoration:none;color:var(--fg);display:flex;align-items:center;gap:10px}
+.brand i{display:inline-block;width:22px;height:22px;border-radius:5px;background:var(--accent);box-shadow:inset 0 -3px 0 rgba(0,0,0,.25)}
+nav.links{display:flex;gap:22px;align-items:center}
+nav.links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
+nav.links a:hover{color:var(--fg)}
+nav.links a.cta{color:var(--accent-ink);background:var(--accent);padding:7px 14px;border-radius:999px}
+nav.links a:focus-visible,.btn:focus-visible,.rail a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+main{position:relative;z-index:1}
+
+/* scroll stages */
+.stage{min-height:100svh;display:flex;align-items:center;padding-block:14vh}
+.stage .wrap{display:flex}
+.stage.right .wrap{justify-content:flex-end}
+.panel{max-width:430px;min-width:0;background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:28px 28px 24px}
+.stage.hero .panel{background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;max-width:520px}
+
+.cap{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);background:var(--cap);border:1px solid var(--cap-edge);border-radius:7px;padding:5px 10px 6px;box-shadow:0 3px 0 var(--cap-edge);margin-bottom:20px}
+.cap b{color:var(--accent);font-weight:600}
+
+h1,h2{font-family:var(--display);font-weight:800;line-height:.98;margin:0 0 16px;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(46px,7.4vw,96px);font-variation-settings:"wdth" 112}
+h2{font-size:clamp(30px,3.6vw,44px);font-variation-settings:"wdth" 100}
+p{margin:0 0 16px;max-width:62ch}
+.lede{font-size:clamp(17px,1.5vw,19px);color:var(--muted)}
+.panel p{color:var(--muted)}
+
+dl.specs{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:14px}
+dl.specs dt{color:var(--muted)}
+dl.specs dd{margin:0;font-family:var(--mono);font-size:13px;font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+
+.hero-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px var(--body);border-radius:999px;padding:12px 22px;text-decoration:none;cursor:pointer;border:1px solid transparent}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border-color:var(--line);color:var(--fg);background:transparent}
+.price{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.price strong{font-family:var(--display);font-variation-settings:"wdth" 110;font-size:28px;color:var(--fg);margin-right:6px}
+.scrollhint{display:flex;align-items:center;gap:10px;margin-top:44px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.scrollhint span{width:1px;height:34px;background:linear-gradient(var(--muted),transparent)}
+
+/* colorways */
+.swatches{display:flex;gap:10px;margin:18px 0 6px;flex-wrap:wrap}
+.swatches label{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;cursor:pointer;font-size:14px}
+.swatches input{position:absolute;opacity:0;pointer-events:none}
+.swatches .dot{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.2)}
+.swatches input:checked + label{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.swatches input:focus-visible + label{outline:2px solid var(--accent);outline-offset:2px}
+
+/* progress rail */
+.rail{position:fixed;right:max(18px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:10px}
+.rail a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.rail a span{opacity:0;transform:translateX(6px);transition:.25s}
+.rail a i{width:8px;height:8px;border-radius:2px;border:1px solid var(--muted);transition:.25s}
+.rail a.on{color:var(--fg)}
+.rail a.on span,.rail a:hover span{opacity:1;transform:none}
+.rail a.on i{background:var(--accent);border-color:var(--accent);width:14px}
+
+/* contact */
+.contact{padding-block:12vh 6vh}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.contact .panel{max-width:none}
+.contact .panel.form{grid-column:1}
+.contact-list{display:grid;gap:14px;margin:22px 0 0}
+.row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row .v{font-weight:500;user-select:all;overflow-wrap:anywhere}
+.row .v.plain{user-select:text}
+.copy{font:600 12px var(--mono);border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:6px;padding:5px 9px;cursor:pointer}
+form{display:grid;gap:14px;margin-top:18px}
+form label{display:grid;gap:6px;font-size:13px;font-weight:600}
+input,textarea{font:inherit;font-size:15px;color:var(--fg);background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.status{font-size:14px;color:var(--muted);min-height:1.4em;margin:0}
+.status.ok{color:var(--fg)}
+footer{position:relative;z-index:1;padding-block:28px 40px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px}
+
+@media (max-width:900px){
+  .contact .wrap{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  nav.links a:not(.cta){display:none}
+  .rail{display:none}
+  .stage{align-items:flex-end;min-height:118svh;padding-block:52svh 8svh}
+  .stage.right .wrap{justify-content:flex-start}
+  .panel{max-width:none;width:100%;padding:22px 20px 20px}
+  .stage.hero{padding-block:46svh 8svh}
+  .stage.hero .panel{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:22px 20px}
+  .row{grid-template-columns:minmax(0,1fr) auto}
+  .row .k{grid-column:1/-1}
+}
+</style>
+
+<canvas id="stage3d" aria-hidden="true"></canvas>
+
+<header class="top gutter">
+  <div class="wrap">
+    <a class="brand" href="#intro"><i></i>TOLVA</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#keycaps">Keycaps</a>
+      <a href="#switches">Switches</a>
+      <a href="#knob">Knob</a>
+      <a href="#profile">Build</a>
+      <a class="cta" href="#order">Order · $249</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Tour progress">
+  <a href="#intro"><span>Intro</span><i></i></a>
+  <a href="#keycaps"><span>Keycaps</span><i></i></a>
+  <a href="#switches"><span>Switches</span><i></i></a>
+  <a href="#knob"><span>Knob</span><i></i></a>
+  <a href="#port"><span>Port</span><i></i></a>
+  <a href="#base"><span>Base</span><i></i></a>
+  <a href="#profile"><span>Profile</span><i></i></a>
+  <a href="#order"><span>Order</span><i></i></a>
+  <a href="#contact"><span>Contact</span><i></i></a>
+</nav>
+
+<main>
+  <section class="stage hero gutter" id="intro" data-stage="0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">K75 <b>·</b> 84 keys</div>
+        <h1>Tolva Seventy&#8209;Five</h1>
+        <p class="lede">A 75% aluminium keyboard tuned for how it sounds and feels after eight hours of typing. Scroll, and we'll turn it over for you, part by part.</p>
+        <div class="hero-row">
+          <a class="btn primary" href="#order">Reserve one</a>
+          <span class="price"><strong>$249</strong>ships in November</span>
+        </div>
+        <div class="scrollhint"><span></span>Scroll to take a closer look</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage right gutter" id="keycaps" data-stage="1">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">Aa <b>·</b> PBT 1.5 mm</div>
+        <h2>Legends that never rub off.</h2>
+        <p>Every cap is double-shot PBT, so the letters are a second layer of plastic molded straight through the key, not paint. The textured tops stay matte and dry after years of use.</p>
+        <dl class="specs">
+          <dt>Material</dt><dd>Double-shot PBT</dd>
+          <dt>Wall thickness</dt><dd>1.5 mm</dd>
+          <dt>Profile</dt><dd>Cherry height</dd>
+          <dt>Layout</dt><dd>ANSI 75%</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage gutter" id="switches" data-stage="2">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">H J K L <b>·</b> hot-swap</div>
+        <h2>Swap a switch in ten seconds.</h2>
+        <p>Pull a cap, pull the switch, push in a new one. The five-pin sockets take any MX-style switch, so you can try tactiles on the home row and keep linears everywhere else. No soldering iron needed.</p>
+        <dl class="specs">
+          <dt>Stock switch</dt><dd>Tolva Linear</dd>
+          <dt>Actuation force</dt><dd>45 gf</dd>
+          <dt>Total travel</dt><dd>4.0 mm</dd>
+          <dt>Sockets</dt><dd>5-pin, south-facing</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage right gutter" id="knob" data-stage="3">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">Knob <b>·</b> 24 detents</div>
+        <h2>A dial for whatever you turn most.</h2>
+        <p>The knob is machined from solid brass with a knurled grip. Out of the box it controls volume and mutes on press. Remap it to scrub video, zoom, or change brush size in the browser configurator.</p>
+        <dl class="specs">
+          <dt>Material</dt><dd>Brass, knurled</dd>
+          <dt>Steps per turn</dt><dd>24</dd>
+          <dt>Default</dt><dd>Volume / mute</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage gutter" id="port" data-stage="4">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">USB-C <b>·</b> 1000 Hz</div>
+        <h2>One cable, straight out the back.</h2>
+        <p>The detachable USB-C port sits dead center, so the cable runs straight to your computer instead of fighting the mouse. A small slider beside it flips between Mac and Windows key layouts.</p>
+        <dl class="specs">
+          <dt>Connector</dt><dd>USB-C, detachable</dd>
+          <dt>Polling rate</dt><dd>1000 Hz</dd>
+          <dt>Modes</dt><dd>Mac / Win</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage right gutter" id="base" data-stage="5">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">Base <b>·</b> 1.24 kg</div>
+        <h2>Half a kilo of brass underneath.</h2>
+        <p>A full-length brass weight keeps the board planted while you type and kills the hollow ring that light cases have. Four silicone feet grip the desk, even a slick one.</p>
+        <dl class="specs">
+          <dt>Total weight</dt><dd>1.24 kg</dd>
+          <dt>Brass weight</dt><dd>0.48 kg</dd>
+          <dt>Case</dt><dd>6063 aluminium, CNC</dd>
+          <dt>Mount</dt><dd>Gasket, PORON</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage gutter" id="profile" data-stage="6">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">Profile <b>·</b> 7°</div>
+        <h2>The angle is part of the case.</h2>
+        <p>There are no flip-out feet to wobble or snap. A 7° typing angle is machined into the aluminium, and the front edge sits low at 19 mm, so most people type without a wrist rest.</p>
+        <dl class="specs">
+          <dt>Typing angle</dt><dd>7°</dd>
+          <dt>Front height</dt><dd>19 mm</dd>
+          <dt>Footprint</dt><dd>322 × 147 mm</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage gutter" id="order" data-stage="7">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">Order <b>·</b> batch 03</div>
+        <h2>Back where you started. Want one?</h2>
+        <p>Batch 03 is 300 boards, assembled and tested by hand in our workshop. Pick a case color; the keycaps are the same on all three.</p>
+        <div class="swatches" role="radiogroup" aria-label="Case color">
+          <input type="radio" name="cw" id="cw-sage" value="sage" checked><label for="cw-sage"><span class="dot" style="background:#8d9b87"></span>Sage</label>
+          <input type="radio" name="cw" id="cw-graphite" value="graphite"><label for="cw-graphite"><span class="dot" style="background:#3d4248"></span>Graphite</label>
+          <input type="radio" name="cw" id="cw-bone" value="bone"><label for="cw-bone"><span class="dot" style="background:#ddd6c6"></span>Bone</label>
+        </div>
+        <div class="hero-row">
+          <button class="btn primary" id="reserve" type="button">Reserve a Sage K75</button>
+          <span class="price"><strong>$249</strong>incl. switches</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact gutter" id="contact" data-stage="7">
+    <div class="wrap">
+      <div class="panel">
+        <div class="cap">Contact <b>·</b> workshop</div>
+        <h2>Talk to the people who build it.</h2>
+        <p>Questions about switches, shipping or a custom layout go straight to the workshop. We answer within one working day.</p>
+        <div class="contact-list">
+          <div class="row"><span class="k">Email</span><span class="v" id="c-email">hello@tolva.store</span><button class="copy" type="button" data-copy="c-email">Copy</button></div>
+          <div class="row"><span class="k">Phone</span><span class="v" id="c-phone">+1 (503) 555-0147</span><button class="copy" type="button" data-copy="c-phone">Copy</button></div>
+          <div class="row"><span class="k">Workshop</span><span class="v plain">Unit 4, 218 SE Ash St, Portland, OR 97214</span></div>
+          <div class="row"><span class="k">Hours</span><span class="v plain">Mon–Fri, 10:00–18:00 PT</span></div>
+        </div>
+      </div>
+      <div class="panel form">
+        <h2 style="font-size:28px">Send a message</h2>
+        <form id="contact-form" novalidate>
+          <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+          <label for="f-msg">Message<textarea id="f-msg" name="message" required placeholder="Which switches would you recommend for quiet typing?"></textarea></label>
+          <div class="hero-row" style="margin-top:4px">
+            <button class="btn primary" type="submit">Send message</button>
+          </div>
+          <p class="status" id="f-status" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="gutter">
+  <div class="wrap">
+    <span>© 2026 Tolva Keyboards. Built in small batches.</span>
+    <span>Free shipping in the US and EU · 2-year warranty</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  /* ---------- page UI ---------- */
+  const COLORWAYS = {sage:0x8d9b87, graphite:0x3d4248, bone:0xddd6c6};
+  const cwNames = {sage:'Sage', graphite:'Graphite', bone:'Bone'};
+  let setCaseColor = ()=>{};
+  document.querySelectorAll('input[name="cw"]').forEach(r=>r.addEventListener('change',()=>{
+    setCaseColor(COLORWAYS[r.value]);
+    document.getElementById('reserve').textContent = 'Reserve a ' + cwNames[r.value] + ' K75';
+  }));
+  document.getElementById('reserve').addEventListener('click',()=>{
+    const v = document.querySelector('input[name="cw"]:checked').value;
+    const msg = document.getElementById('f-msg');
+    msg.value = "I'd like to reserve a Tolva K75 in " + cwNames[v] + " from batch 03.";
+    document.getElementById('contact').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth'});
+    setTimeout(()=>document.getElementById('f-name').focus({preventScroll:true}), 600);
+  });
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+    const el = document.getElementById(b.dataset.copy);
+    const done = ()=>{ b.textContent='Copied'; setTimeout(()=>b.textContent='Copy',1600); };
+    const fallback = ()=>{ const s=getSelection(), r=document.createRange(); r.selectNodeContents(el); s.removeAllRanges(); s.addRange(r); b.textContent='Selected'; setTimeout(()=>b.textContent='Copy',1600); };
+    try{ navigator.clipboard.writeText(el.textContent).then(done, fallback); }catch(e){ fallback(); }
+  }));
+  document.getElementById('contact-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const f=e.target, st=document.getElementById('f-status');
+    const name=f.name.value.trim(), email=f.email.value.trim(), msg=f.message.value.trim();
+    if(!name||!email||!msg){ st.className='status'; st.textContent='Fill in your name, email and message, then send again.'; return; }
+    if(!/^\S+@\S+\.\S+$/.test(email)){ st.className='status'; st.textContent='That email address looks incomplete. Check it and send again.'; return; }
+    st.className='status ok';
+    st.textContent='Thanks, '+name+'. This page is a preview and can’t deliver mail, so please also write to hello@tolva.store.';
+    f.reset();
+  });
+
+  /* rail highlight */
+  const sections=[...document.querySelectorAll('main > section')];
+  const railLinks=[...document.querySelectorAll('.rail a')];
+  function updateRail(){
+    const mid=scrollY+innerHeight*0.5; let idx=0;
+    sections.forEach((s,i)=>{ if(s.offsetTop<=mid) idx=i; });
+    railLinks.forEach((a,i)=>a.classList.toggle('on',i===idx));
+  }
+  addEventListener('scroll',updateRail,{passive:true}); updateRail();
+
+  /* ---------- 3D keyboard ---------- */
+  if(!window.THREE) return;
+  const canvas=document.getElementById('stage3d');
+  let renderer;
+  try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); }catch(e){ canvas.remove(); return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(30,1,0.1,200);
+  camera.position.set(0,0,32); camera.lookAt(0,0,0);
+
+  scene.add(new THREE.HemisphereLight(0xffffff,0x6f7570,0.85));
+  const key=new THREE.DirectionalLight(0xffffff,0.95); key.position.set(8,14,12); scene.add(key);
+  const rim=new THREE.DirectionalLight(0xdfe6ff,0.55); rim.position.set(-10,-4,-8); scene.add(rim);
+  const fill=new THREE.DirectionalLight(0xfff3e0,0.35); fill.position.set(-6,6,14); scene.add(fill);
+
+  const model=new THREE.Group(); scene.add(model);
+  const inner=new THREE.Group(); inner.position.y=-1.0; model.add(inner);
+  const PIVOT_Y=1.0;
+
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function rr(w,h,r){const s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s;}
+
+  /* case: a wedge extruded along the width */
+  const W=16.1, D=7.35, HF=0.75, ANG=7*Math.PI/180, HB=HF+D*Math.tan(ANG);
+  const prof=new THREE.Shape();
+  prof.moveTo(D/2,0); prof.lineTo(D/2,HF); prof.lineTo(-D/2,HB); prof.lineTo(-D/2,0); prof.lineTo(D/2,0);
+  const caseGeo=new THREE.ExtrudeGeometry(prof,{depth:W,bevelEnabled:true,bevelThickness:0.14,bevelSize:0.12,bevelSegments:4,curveSegments:4});
+  caseGeo.rotateY(-Math.PI/2); caseGeo.translate(W/2,0,0); caseGeo.computeVertexNormals(); caseGeo.computeBoundingBox();
+  const bb=caseGeo.boundingBox;
+  const caseMat=new THREE.MeshStandardMaterial({color:COLORWAYS.sage,metalness:0.35,roughness:0.42});
+  inner.add(new THREE.Mesh(caseGeo,caseMat));
+  setCaseColor=c=>caseMat.color.setHex(c);
+
+  const dark=new THREE.MeshStandardMaterial({color:0x24272b,roughness:0.7,metalness:0.1});
+  const brass=new THREE.MeshStandardMaterial({color:0xc29a4e,metalness:0.75,roughness:0.32});
+
+  /* key area, tilted 7 degrees to match the case top */
+  const keys=new THREE.Group(); keys.position.set(0,(HF+HB)/2,0); keys.rotation.x=ANG; inner.add(keys);
+  const PW=15.2, PD=6.45;
+  const plate=new THREE.Mesh(new THREE.BoxGeometry(PW,0.06,PD),dark); plate.position.y=0.03; keys.add(plate);
+  const fr=0.45, fh=0.3;
+  [[PW+fr*2,fh,fr,0,fh/2,-(PD/2+fr/2)],[PW+fr*2,fh,fr,0,fh/2,(PD/2+fr/2)],[fr,fh,PD,-(PW/2+fr/2),fh/2,0],[fr,fh,PD,(PW/2+fr/2),fh/2,0]].forEach(a=>{
+    const m=new THREE.Mesh(new THREE.BoxGeometry(a[0],a[1],a[2]),caseMat); m.position.set(a[3],a[4],a[5]); keys.add(m);
+  });
+
+  const capMats={
+    alpha:new THREE.MeshStandardMaterial({color:0xefe9dc,roughness:0.78}),
+    mod:new THREE.MeshStandardMaterial({color:0x5a6067,roughness:0.78}),
+    acc:new THREE.MeshStandardMaterial({color:0x2c51c4,roughness:0.7}),
+  };
+  const housingMat=new THREE.MeshStandardMaterial({color:0x2d3135,roughness:0.5});
+  const stemMat=new THREE.MeshStandardMaterial({color:0xe2b53b,roughness:0.5});
+  const housingGeo=new THREE.BoxGeometry(0.58,0.3,0.58), stemGeo=new THREE.BoxGeometry(0.15,0.24,0.15);
+  const geoCache={};
+  const CAP_H=0.44, CAP_D=0.88;
+  function capGeo(w){
+    if(geoCache[w]) return geoCache[w];
+    const g=new THREE.ExtrudeGeometry(rr(w-0.14,CAP_D,0.11),{depth:CAP_H-0.12,bevelEnabled:true,bevelThickness:0.06,bevelSize:0.05,bevelSegments:3,curveSegments:5});
+    g.rotateX(-Math.PI/2); g.translate(0,0.06,0);
+    const p=g.attributes.position;
+    for(let i=0;i<p.count;i++){const y=p.getY(i),f=1-0.13*Math.max(0,y)/CAP_H;p.setX(i,p.getX(i)*(1-(1-f)*(1/ (w))) ); p.setZ(i,p.getZ(i)*f);}
+    g.computeVertexNormals();
+    return geoCache[w]=g;
+  }
+  function legend(label,w,kind){
+    const c=document.createElement('canvas'),px=128; c.width=Math.round(px*w); c.height=px;
+    const g=c.getContext('2d');
+    g.fillStyle = kind==='alpha' ? '#2b2e33' : '#f3eee4';
+    const short=label.length<=2;
+    g.font=(short?'600 44px':'600 25px')+' "JetBrains Mono", ui-monospace, monospace';
+    g.textBaseline='top'; g.fillText(label,16,14);
+    const t=new THREE.CanvasTexture(c); t.anisotropy=4; return t;
+  }
+
+  const F=['F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12'];
+  const A=s=>s.split(' ').map(k=>[k,1,'alpha']);
+  const rows=[
+    [['Esc',1,'acc'],...F.map(k=>[k,1,'mod']),['#knob',2]],
+    [...A('~ 1 2 3 4 5 6 7 8 9 0 - ='),['⌫',2,'mod']],
+    [['Tab',1.5,'mod'],...A('Q W E R T Y U I O P [ ]'),['\\',1.5,'mod']],
+    [['Caps',1.75,'mod'],...A("A S D F G H J K L ; '"),['Enter',2.25,'acc']],
+    [['Shift',2.25,'mod'],...A('Z X C V B N M , . /'),['Shift',1.75,'mod'],['↑',1,'mod']],
+    [['Ctrl',1.25,'mod'],['⌘',1.25,'mod'],['Alt',1.25,'mod'],['',6.25,'alpha'],['Alt',1,'mod'],['Fn',1,'mod'],['←',1,'mod'],['↓',1,'mod'],['→',1,'mod']],
+  ];
+  const lifted=[]; let knob=null;
+  const legendJobs=[];
+  rows.forEach((row,r)=>{
+    let x=-7.5; const z=-2.625+r+(r>0?0.25:0);
+    row.forEach(([label,w,kind])=>{
+      const cx=x+w/2; x+=w;
+      if(label==='#knob'){ knob={x:cx,z}; return; }
+      const sw=new THREE.Group(); sw.position.set(cx,0,z); keys.add(sw);
+      const h=new THREE.Mesh(housingGeo,housingMat); h.position.y=0.2; sw.add(h);
+      const st=new THREE.Mesh(stemGeo,stemMat); st.position.y=0.45; sw.add(st);
+      const kg=new THREE.Group(); kg.position.set(cx,0.3,z); keys.add(kg);
+      kg.add(new THREE.Mesh(capGeo(w),capMats[kind]));
+      if(label){ legendJobs.push({kg,label,w,kind}); }
+      if(r===3 && 'HJKL'.includes(label) && label.length===1) lifted.push({g:kg,i:'HJKL'.indexOf(label)});
+    });
+  });
+  function addLegends(){
+    legendJobs.forEach(({kg,label,w,kind})=>{
+      const m=new THREE.Mesh(new THREE.PlaneGeometry((w-0.14)*0.8,CAP_D*0.8),new THREE.MeshBasicMaterial({map:legend(label,w,kind),transparent:true,depthWrite:false}));
+      m.rotation.x=-Math.PI/2; m.position.y=CAP_H+0.004; kg.add(m);
+    });
+  }
+  const fontsReady = (document.fonts && document.fonts.load) ? Promise.race([document.fonts.load('600 44px "JetBrains Mono"'), new Promise(r=>setTimeout(r,1500))]) : Promise.resolve();
+  fontsReady.then(addLegends, addLegends);
+
+  /* brass knob */
+  const knobG=new THREE.Group(); knobG.position.set(knob.x,0.06,knob.z); keys.add(knobG);
+  const kb=new THREE.Mesh(new THREE.CylinderGeometry(0.46,0.48,0.6,48),brass); kb.position.y=0.3; knobG.add(kb);
+  for(let i=0;i<28;i++){const a=i/28*Math.PI*2; const r=new THREE.Mesh(new THREE.BoxGeometry(0.05,0.5,0.06),brass); r.position.set(Math.cos(a)*0.48,0.3,Math.sin(a)*0.48); r.rotation.y=-a; knobG.add(r);}
+  const ktop=new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,0.02,48),new THREE.MeshStandardMaterial({color:0xd8b56a,metalness:0.8,roughness:0.2})); ktop.position.y=0.61; knobG.add(ktop);
+  const kmark=new THREE.Mesh(new THREE.BoxGeometry(0.06,0.03,0.26),dark); kmark.position.set(0,0.625,-0.22); knobG.add(kmark);
+
+  /* rear: USB-C port, mode slider, badge */
+  const backZ=bb.min.z, portY=(HB+0.0)/2;
+  const port=new THREE.Mesh(new THREE.ExtrudeGeometry(rr(1.0,0.38,0.17),{depth:0.06,bevelEnabled:false}),dark); port.position.set(0,portY,backZ-0.05); inner.add(port);
+  const slot=new THREE.Mesh(new THREE.ExtrudeGeometry(rr(0.72,0.14,0.07),{depth:0.02,bevelEnabled:false}),new THREE.MeshStandardMaterial({color:0x8e959c,metalness:0.6,roughness:0.3})); slot.position.set(0,portY,backZ-0.07); inner.add(slot);
+  const sl=new THREE.Mesh(new THREE.BoxGeometry(0.62,0.24,0.06),dark); sl.position.set(1.6,portY,backZ-0.03); inner.add(sl);
+  const nub=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.18,0.08),brass); nub.position.set(1.47,portY,backZ-0.06); inner.add(nub);
+  function textTex(lines,w,h,color,sizes){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');g.fillStyle=color;g.textAlign='center';g.textBaseline='middle';lines.forEach((l,i)=>{g.font=sizes[i];g.fillText(l,w/2,h*(i+1)/(lines.length+1));});const t=new THREE.CanvasTexture(c);t.anisotropy=4;return t;}
+  let badge, engrave;
+  function addTextBits(){
+    badge=new THREE.Mesh(new THREE.PlaneGeometry(2.8,0.6),new THREE.MeshBasicMaterial({map:textTex(['TOLVA  K75  ·  Nº 0418'],560,120,'#f3eee4',['600 40px "JetBrains Mono", monospace']),transparent:true}));
+    badge.rotation.y=Math.PI; badge.position.set(-3.4,portY,backZ-0.01); inner.add(badge);
+    const lab=new THREE.Mesh(new THREE.PlaneGeometry(1.4,0.3),new THREE.MeshBasicMaterial({map:textTex(['MAC   WIN'],280,60,'#f3eee4',['600 30px "JetBrains Mono", monospace']),transparent:true}));
+    lab.rotation.y=Math.PI; lab.position.set(1.6,portY+0.32,backZ-0.01); inner.add(lab);
+    engrave=new THREE.Mesh(new THREE.PlaneGeometry(10,4.4),new THREE.MeshBasicMaterial({map:textTex(['TOLVA','SEVENTY-FIVE  ·  BATCH 03','BRASS 0.48 KG  ·  PORTLAND, OR'],1000,440,'rgba(70,50,20,.85)',['800 120px "Archivo", sans-serif','600 34px "JetBrains Mono", monospace','600 28px "JetBrains Mono", monospace']),transparent:true}));
+    engrave.rotation.x=Math.PI/2; engrave.position.set(0,bb.min.y-0.081,0); inner.add(engrave);
+  }
+  fontsReady.then(addTextBits, addTextBits);
+
+  /* underside: brass weight and feet */
+  const weight=new THREE.Mesh(new THREE.BoxGeometry(10,0.08,4.4),brass); weight.position.set(0,bb.min.y-0.04,0); inner.add(weight);
+  const footMat=new THREE.MeshStandardMaterial({color:0x1f2225,roughness:0.95});
+  [[-6.9,-2.7],[6.9,-2.7],[-6.9,2.7],[6.9,2.7]].forEach(([x,z])=>{const f=new THREE.Mesh(new THREE.CylinderGeometry(0.36,0.4,0.14,32),footMat); f.position.set(x,bb.min.y-0.07,z); inner.add(f);});
+
+  /* ---------- scroll choreography ---------- */
+  const TAU=Math.PI*2;
+  // r: rotation, s: scale, f: local point to frame, t: where it lands (fraction of half-viewport), side text opposite
+  const KF=[
+    {r:[0.42,-0.45,0.04], s:0.95, f:[0,1.0,0],      t:[0.40,-0.04]},
+    {r:[1.02,0.14,0],     s:1.85, f:[-3.4,1.6,0.6], t:[-0.38,-0.06]},
+    {r:[0.78,-0.32,0],    s:2.25, f:[1.25,2.3,0.4], t:[0.38,-0.1]},
+    {r:[0.52,-0.78,0],    s:3.0,  f:[6.5,2.0,-2.6], t:[-0.4,-0.04]},
+    {r:[0.28,Math.PI+0.38,0], s:1.7, f:[0,0.9,-3.7], t:[0.38,-0.06]},
+    {r:[-1.85,TAU+0.3,0], s:1.15, f:[0,-0.2,0],        t:[-0.38,0.0]},
+    {r:[0.06,TAU+Math.PI/2,0], s:2.1, f:[-8,0.9,0], t:[0.36,-0.06]},
+    {r:[0.42,TAU-0.45,0.04], s:0.95, f:[0,1.0,0],   t:[0.40,-0.04]},
+  ];
+  let poses=[], mobile=false;
+  function computePoses(){
+    const halfH=camera.position.z*Math.tan(camera.fov*Math.PI/360), halfW=halfH*camera.aspect;
+    mobile=innerWidth<=760;
+    const fit=Math.min(1, halfW/(mobile?10:14.5));
+    poses=KF.map(k=>{
+      const s=k.s*fit*(mobile?1.05:1);
+      const q=new THREE.Quaternion().setFromEuler(new THREE.Euler(k.r[0],k.r[1],k.r[2]));
+      const v=new THREE.Vector3(k.f[0],k.f[1]-PIVOT_Y,k.f[2]).applyQuaternion(q).multiplyScalar(s);
+      const tx=mobile?0:k.t[0]*halfW, ty=mobile?halfH*0.42:k.t[1]*halfH;
+      return {r:k.r,s,p:[tx-v.x,ty-v.y,-v.z]};
+    });
+  }
+  function resize(){
+    const w=innerWidth,h=innerHeight;
+    renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); computePoses();
+  }
+  addEventListener('resize',resize); resize();
+
+  const stageEls=[...document.querySelectorAll('[data-stage]')];
+  function targetProgress(){
+    const mid=scrollY+innerHeight/2;
+    const cs=stageEls.map(e=>({c:e.offsetTop+e.offsetHeight/2,i:+e.dataset.stage}));
+    if(mid<=cs[0].c) return cs[0].i;
+    for(let j=0;j<cs.length-1;j++){
+      if(mid<cs[j+1].c){
+        let t=(mid-cs[j].c)/(cs[j+1].c-cs[j].c);
+        t=Math.min(1,Math.max(0,(t-0.2)/0.6)); t=t*t*(3-2*t);
+        return cs[j].i+(cs[j+1].i-cs[j].i)*t;
+      }
+    }
+    return cs[cs.length-1].i;
+  }
+  const L=(a,b,t)=>a+(b-a)*t;
+  let prog=targetProgress();
+  const clock=new THREE.Clock();
+  function frame(){
+    const time=clock.getElapsedTime();
+    const tp=targetProgress();
+    prog = reduce ? tp : prog+(tp-prog)*0.075;
+    const i=Math.min(poses.length-2,Math.floor(prog)), t=prog-i, a=poses[i], b=poses[i+1]||a;
+    model.rotation.set(L(a.r[0],b.r[0],t),L(a.r[1],b.r[1],t),L(a.r[2],b.r[2],t));
+    const s=L(a.s,b.s,t); model.scale.setScalar(s);
+    const bob=reduce?0:Math.sin(time*1.1)*0.08*s;
+    model.position.set(L(a.p[0],b.p[0],t),L(a.p[1],b.p[1],t)+bob,L(a.p[2],b.p[2],t));
+    // lift the home-row keys around stage 2
+    const lift=Math.max(0,1-Math.abs(prog-2)*1.4);
+    lifted.forEach(({g,i})=>{ const d=Math.max(0,Math.min(1,lift*1.25-i*0.08)); g.position.y=0.3+d*d*(3-2*d)*1.5; });
+    // knob turns with scroll, more when it's on stage
+    const kfocus=Math.max(0,1-Math.abs(prog-3));
+    knobG.rotation.y = prog*0.9 + (reduce?0:kfocus*Math.sin(time*0.8)*0.6);
+    renderer.render(scene,camera);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,361 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Vitrinua Studios — сайти для малого бізнесу в Україні: барбершопи, салони краси, автосервіси, магазини."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 28 28%27%3E%3Crect x=%272%27 y=%273%27 width=%2724%27 height=%2722%27 rx=%273%27 fill=%27%230f1f17%27 stroke=%27%23d8b468%27 stroke-width=%271.6%27/%3E%3Cpath d=%27M8 13l6 7 6-7%27 fill=%27none%27 stroke=%27%23d8b468%27 stroke-width=%272%27/%3E%3C/svg%3E"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Vitrinua Studios</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: вітрина в золотій рамі — герой з двома вікнами-браузерами, стрічка ніш, роботи великими розворотами, чотири кроки співпраці, послуги, контакт у золотій рамці */
+:root{
+  --bg:#0f1f17; --bg-2:#1f1710; --surface:#16291f; --surface-2:#1c3226;
+  --fg:#f1e9d2; --muted:#b4ae93; --line:rgba(214,178,98,.22);
+  --gold:#d8b468; --gold-2:#f0d796; --gold-deep:#9a7a35; --gold-ink:#1a1408;
+  --glow:rgba(216,180,104,.16); --shadow:rgba(0,0,0,.55);
+  --f-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --f-body:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.22,.8,.24,1);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#f1ead6;--bg-2:#e7dbbd;--surface:#fbf7ea;--surface-2:#f4edd8;--fg:#17271d;--muted:#4f5b4c;--line:rgba(23,39,29,.16);--gold:#8c6b22;--gold-2:#b38c3a;--gold-deep:#6e521a;--gold-ink:#fbf5e0;--glow:rgba(140,107,34,.14);--shadow:rgba(60,45,15,.28);color-scheme:light}
+}
+:root[data-theme="light"]{--bg:#f1ead6;--bg-2:#e7dbbd;--surface:#fbf7ea;--surface-2:#f4edd8;--fg:#17271d;--muted:#4f5b4c;--line:rgba(23,39,29,.16);--gold:#8c6b22;--gold-2:#b38c3a;--gold-deep:#6e521a;--gold-ink:#fbf5e0;--glow:rgba(140,107,34,.14);--shadow:rgba(60,45,15,.28);color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(90% 60% at 90% -5%,var(--glow),transparent 60%),radial-gradient(70% 50% at -10% 40%,var(--glow),transparent 60%),var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));position:relative;z-index:2}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);font-weight:300;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+h1 em,h2 em{font-style:italic;color:var(--gold)}
+p{margin:0}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 1px 0 var(--line)}
+header .wrap{display:flex;align-items:center;gap:22px;height:66px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--f-display);font-weight:500;font-size:1.18rem;letter-spacing:-.01em}
+.logo svg{width:28px;height:28px;flex:none}
+.logo small{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-left:2px}
+nav{margin-left:auto;display:flex;gap:28px;font-size:.93rem}
+nav a{text-decoration:none;color:var(--muted);position:relative;transition:color .3s var(--ease)}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .45s var(--ease)}
+nav a:hover{color:var(--fg)}
+nav a:hover::after{transform:scaleX(1)}
+.lang{display:flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 60%,transparent)}
+.lang button{font:500 .72rem var(--f-mono);letter-spacing:.08em;border:0;background:transparent;color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer;transition:background .35s var(--ease),color .35s var(--ease)}
+.lang button[aria-pressed="true"]{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--gold-ink)}
+@media (max-width:680px){nav{display:none}.lang{margin-left:auto}.logo small{display:none}}
+
+section{padding-block:clamp(64px,9vw,128px);position:relative}
+.hero{padding-block:clamp(48px,8vw,104px) clamp(56px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(36px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(2.9rem,7vw,5.9rem);margin-block:22px 26px}
+.lede{max-width:34em;color:var(--muted);font-size:1.1rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font:600 .96rem var(--f-body);text-decoration:none;border:1px solid transparent;transition:transform .45s var(--ease),box-shadow .45s var(--ease),background .45s var(--ease),border-color .45s var(--ease)}
+.btn.solid{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,var(--gold-deep));color:var(--gold-ink);box-shadow:0 10px 30px -12px var(--gold)}
+.btn.ghost{border-color:var(--line);color:var(--fg);background:color-mix(in srgb,var(--surface) 50%,transparent)}
+.btn:hover{transform:translateY(-2px)}
+.btn.solid:hover{box-shadow:0 18px 40px -14px var(--gold)}
+.btn.ghost:hover{border-color:var(--gold)}
+.btn svg{width:16px;height:16px;transition:transform .45s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.facts{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.facts b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.5rem;color:var(--fg);line-height:1.1}
+
+.showcase{position:relative;aspect-ratio:1/0.92;max-width:100%}
+.showcase::before{content:"";position:absolute;inset:6% 4%;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 65%);filter:blur(10px)}
+.browser{position:absolute;border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:0 40px 80px -30px var(--shadow),0 0 0 1px color-mix(in srgb,var(--gold) 10%,transparent)}
+.bar{display:flex;align-items:center;gap:6px;height:30px;padding-inline:12px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.bar span{margin-left:10px;flex:1;max-width:60%;height:14px;border-radius:999px;background:color-mix(in srgb,var(--fg) 7%,transparent);font:500 .58rem/14px var(--f-mono);color:var(--muted);padding-left:10px;overflow:hidden;white-space:nowrap}
+.b-back{width:74%;left:0;top:4%;transform:rotate(-5deg);animation:floatA 9s var(--ease) infinite alternate}
+.b-front{width:78%;right:0;bottom:2%;transform:rotate(3deg);animation:floatB 10s var(--ease) infinite alternate}
+@keyframes floatA{to{transform:rotate(-3.5deg) translateY(-10px)}}
+@keyframes floatB{to{transform:rotate(2deg) translateY(8px)}}
+.seal{position:absolute;right:2%;top:0;width:96px;height:96px;z-index:3;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.shot{aspect-ratio:16/10;max-width:100%;padding:clamp(14px,2.6vw,26px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+.shot .name{font-size:clamp(1.3rem,3vw,2.2rem);line-height:1;position:relative}
+.shot .row{font:500 .66rem 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;position:relative}
+.s-watch{background:radial-gradient(circle at 72% 45%,#24407a,#0b111b 68%);color:#ece6d3}
+.s-watch .name{font-family:'Fraunces',Georgia,serif;font-style:italic;letter-spacing:.04em}
+.s-watch .row{color:#c8a467}
+.dial{position:absolute;right:-6%;top:50%;width:56%;aspect-ratio:1;border-radius:50%;transform:translateY(-50%);border:2px solid #c8a467;background:radial-gradient(circle at 40% 35%,#1f3566,#0c1730 70%);box-shadow:inset 0 0 0 9px #0c1730,inset 0 0 0 10px #c8a46777,0 20px 40px -10px #000}
+.dial::before,.dial::after{content:"";position:absolute;left:50%;top:50%;background:#e6c992;transform-origin:50% 100%;border-radius:2px}
+.dial::before{width:3px;height:34%;transform:translate(-50%,-100%) rotate(-58deg)}
+.dial::after{width:2px;height:40%;transform:translate(-50%,-100%) rotate(60deg);animation:tick 60s steps(60) infinite}
+@keyframes tick{to{transform:translate(-50%,-100%) rotate(420deg)}}
+.s-key{background:linear-gradient(160deg,#eef1ec,#d7ddd3);color:#1b201c}
+.s-key .name{font-family:'Onest',system-ui,sans-serif;font-weight:600;letter-spacing:-.03em}
+.s-key .row{color:#58615a}
+.keys{position:absolute;right:5%;bottom:14%;width:56%;display:grid;grid-template-columns:repeat(8,1fr);gap:4px;transform:perspective(500px) rotateX(48deg) rotateZ(-14deg);transform-origin:50% 100%}
+.keys b{aspect-ratio:1;background:#f4efe4;border:1px solid #c9c1b0;border-radius:3px;box-shadow:0 2px 0 #c9c1b0}
+.keys b:nth-child(7n){background:#2c51c4;border-color:#1c3a95;box-shadow:0 2px 0 #1c3a95}
+
+.niches{border-block:1px solid var(--line);background:color-mix(in srgb,var(--bg-2) 70%,transparent);overflow:hidden;padding-block:20px;position:relative;z-index:2}
+.niches .track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.niches span{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.6vw,1.9rem);padding-left:52px;white-space:nowrap;display:inline-flex;align-items:center;gap:52px}
+.niches span::after{content:"";width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 60px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.head h2{font-size:clamp(2.3rem,5.4vw,4.2rem);margin-top:16px}
+.head p{color:var(--muted);max-width:34em;justify-self:end}
+@media (max-width:820px){.head{grid-template-columns:1fr}.head p{justify-self:start}}
+
+.works{display:grid;gap:clamp(40px,6vw,88px)}
+.work{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center}
+.work:nth-child(2) .frame{order:2}
+.frame{display:block;text-decoration:none;border-radius:20px;padding:10px;background:linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(135deg,var(--gold-2),transparent 40%,transparent 60%,var(--gold-deep)) border-box;border:1px solid transparent;box-shadow:0 40px 80px -40px var(--shadow);transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
+.frame .inner{border-radius:12px;overflow:hidden}
+.frame .shot{transition:transform 1.1s var(--ease)}
+.frame:hover{transform:translateY(-6px);box-shadow:0 50px 90px -40px var(--shadow)}
+.frame:hover .shot{transform:scale(1.035)}
+.info{min-width:0;display:flex;flex-direction:column;gap:16px}
+.idx{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.info h3{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+.info p{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+.info .btn{align-self:flex-start;margin-top:6px}
+@media (max-width:820px){.work{grid-template-columns:1fr}.work:nth-child(2) .frame{order:0}}
+.note{margin-top:clamp(40px,5vw,64px);padding:24px 28px;border-radius:18px;border:1px dashed var(--line);color:var(--muted);max-width:52em}
+
+.process{background:linear-gradient(180deg,transparent,var(--bg-2) 14%,var(--bg-2) 86%,transparent)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.step{padding:28px 24px;border-radius:20px;background:color-mix(in srgb,var(--surface) 55%,transparent);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0;transition:border-color .5s var(--ease),transform .5s var(--ease),opacity 1s var(--ease)}
+.step:hover{border-color:var(--gold);transform:translateY(-4px)}
+.step .n{font-family:var(--f-display);font-style:italic;font-size:2.6rem;line-height:1;color:var(--gold)}
+.step h3{font-size:1.35rem;line-height:1.1}
+.step p{color:var(--muted);font-size:.95rem}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.svc > div{padding:30px 28px 8px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.svc > div + div{padding-left:28px;border-left:1px solid var(--line)}
+.svc svg{width:30px;height:30px;color:var(--gold)}
+.svc h3{font-size:1.6rem;line-height:1.05}
+.svc p{color:var(--muted);font-size:.97rem}
+@media (max-width:820px){.svc{grid-template-columns:1fr}.svc > div,.svc > div + div{padding:26px 0;border-left:0;border-bottom:1px solid var(--line)}}
+
+.contact-card{border-radius:28px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,4vw,60px);align-items:center;background:radial-gradient(80% 120% at 100% 0%,var(--glow),transparent 60%) padding-box,linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(135deg,var(--gold-2),var(--line) 35%,var(--line) 65%,var(--gold-deep)) border-box;border:1px solid transparent;box-shadow:0 50px 100px -50px var(--shadow)}
+.contact-card h2{font-size:clamp(2.1rem,4.6vw,3.6rem);margin-top:16px}
+.contact-card .lede{margin-top:18px}
+.list{display:grid}
+.list > div{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.list > div:first-child{border-top:1px solid var(--line)}
+.list .k{font:500 .68rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.list .v{overflow-wrap:anywhere;font-weight:500;font-size:1.02rem}
+.copy{font:500 .7rem var(--f-mono);letter-spacing:.04em;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:999px;padding:6px 12px;cursor:pointer;transition:border-color .35s var(--ease)}
+.copy:hover{border-color:var(--gold)}
+@media (max-width:820px){.contact-card{grid-template-columns:1fr}}
+@media (max-width:420px){.list > div{grid-template-columns:minmax(0,1fr) auto}.list .k{grid-column:1/-1}}
+
+footer{padding-block:34px 44px;color:var(--muted);font-size:.86rem;position:relative;z-index:2}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:24px;border-top:1px solid var(--line)}
+
+.rv{transition:opacity 1s var(--ease),transform 1s var(--ease),border-color .5s var(--ease)}
+.rv.pre{opacity:.2;transform:translateY(24px)}
+
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.showcase{max-width:560px;width:100%;justify-self:center}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .b-back,.b-front,.seal,.niches .track,.dial::after{animation:none}
+  .rv,.rv.pre{opacity:1;transform:none;transition:none}
+  .frame:hover,.frame:hover .shot,.step:hover,.btn:hover{transform:none}
+}
+</style>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Vitrinua Studios">
+      <svg viewBox="0 0 28 28" aria-hidden="true"><rect x="2" y="3" width="24" height="22" rx="3" fill="none" stroke="var(--gold)" stroke-width="1.4"/><path d="M2 9h24" stroke="var(--gold)" stroke-width="1.4"/><path d="M8 14l6 7 6-7" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Vitrinua<small>Studios</small>
+    </a>
+    <nav aria-label="Розділи"><a href="#roboty" data-i18n="nav1">Роботи</a><a href="#proces" data-i18n="nav2">Як працюємо</a><a href="#poslugy" data-i18n="nav3">Послуги</a><a href="#kontakty" data-i18n="nav4">Контакти</a></nav>
+    <div class="lang" role="group" aria-label="Мова / Language"><button type="button" data-lang="uk" aria-pressed="true">UA</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-i18n="eyebrow">Веб-студія · Київ</span>
+        <h1 data-i18n="h1">Сайти, що працюють як <em>гарна вітрина</em></h1>
+        <p class="lede" data-i18n="lede">Робимо сайти для барбершопів, салонів краси, автосервісів і магазинів. Перш ніж про щось домовлятися, безкоштовно покажемо, як може виглядати саме ваш.</p>
+        <div class="cta">
+          <a class="btn solid" href="#kontakty"><span data-i18n="cta1">Отримати приклад сайту</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn ghost" href="#roboty" data-i18n="cta2">Подивитися роботи</a>
+        </div>
+        <div class="facts">
+          <div><b data-i18n="f1b">Безкоштовно</b><span data-i18n="f1">приклад до домовленостей</span></div>
+          <div><b data-i18n="f2b">Під телефон</b><span data-i18n="f2">зручно з будь-якого екрана</span></div>
+          <div><b data-i18n="f3b">Договірна</b><span data-i18n="f3">ціна під ваш обсяг</span></div>
+        </div>
+      </div>
+      <div class="showcase" aria-hidden="true">
+        <div class="browser b-back"><div class="bar"><i></i><i></i><i></i><span>tolva.store</span></div><div class="shot s-key"><div class="keys"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div><div class="name">Tolva 75</div><div class="row">Keyboards</div></div></div>
+        <div class="browser b-front"><div class="bar"><i></i><i></i><i></i><span>anker.kyiv.ua</span></div><div class="shot s-watch"><div class="dial"></div><div class="name">Анкер</div><div class="row">Годинники · Київ</div></div></div>
+        <svg class="seal" viewBox="0 0 100 100"><defs><path id="c" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1 -76 0"/></defs><circle cx="50" cy="50" r="48" fill="var(--bg)" stroke="var(--gold)" stroke-width=".8"/><text font-size="9.2" letter-spacing="3.2" fill="var(--gold)" style="font-family:'JetBrains Mono',monospace"><textPath href="#c">VITRINUA · STUDIOS · KYIV · </textPath></text><path d="M50 36l3.5 10.5L64 50l-10.5 3.5L50 64l-3.5-10.5L36 50l10.5-3.5z" fill="var(--gold)"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="niches" aria-hidden="true"><div class="track" id="niches"></div></div>
+
+  <section id="roboty">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow" data-i18n="worksE">Портфоліо</span><h2 data-i18n="worksH">Демо-<em>роботи</em></h2></div>
+        <p data-i18n="worksP">Концепції, зроблені, щоб показати рівень. Назви й дані в них вигадані. Відкрийте їх на телефоні та на комп'ютері.</p>
+      </div>
+      <div class="works">
+        <article class="work">
+          <a class="frame" href="anker/" aria-label="Анкер"><div class="inner"><div class="shot s-watch"><div class="dial" aria-hidden="true"></div><div class="name">Анкер</div><div class="row">Годинникова крамниця · Київ</div></div></div></a>
+          <div class="info">
+            <span class="idx" data-i18n="w1i">Годинники · Анімація прокрутки</span>
+            <h3 data-i18n="w1h">Годинникова крамниця «Анкер»</h3>
+            <p data-i18n="w1p">Сайт-історія про механічні годинники. Під час прокрутки механізм розкладається на шари, далі колекція з шести моделей, живий місячний календар і запис на сервіс.</p>
+            <div class="tags"><span data-i18n="t1">Анімація</span><span data-i18n="t2">Каталог</span><span data-i18n="t3">Форма запису</span></div>
+            <a class="btn ghost" href="anker/"><span data-i18n="go">Відкрити демо</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+        <article class="work">
+          <a class="frame" href="tolva/" aria-label="Tolva Seventy-Five"><div class="inner"><div class="shot s-key"><div class="keys" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div><div class="name">Tolva 75</div><div class="row">Mechanical keyboards</div></div></div></a>
+          <div class="info">
+            <span class="idx" data-i18n="w2i">Клавіатури · 3D</span>
+            <h3>Tolva Seventy-Five</h3>
+            <p data-i18n="w2p">Продуктова сторінка клавіатури з 3D-моделлю, яка повертається до кожної деталі, поки ви гортаєте. Є вибір кольору корпусу, характеристики й форма замовлення.</p>
+            <div class="tags"><span data-i18n="t4">3D-модель</span><span data-i18n="t5">Інтернет-магазин</span><span data-i18n="t6">Англійською</span></div>
+            <a class="btn ghost" href="tolva/"><span data-i18n="go">Відкрити демо</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <p class="note" data-i18n="note">Вашому бізнесу не обов'язково потрібні 3D чи анімації. Часто достатньо однієї гарної сторінки з послугами, цінами, фото й кнопкою «Зателефонувати». Зробимо так само охайно.</p>
+    </div>
+  </section>
+
+  <section class="process" id="proces">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow" data-i18n="prE">Як працюємо</span><h2 data-i18n="prH">Від листа до <em>готового сайту</em></h2></div>
+        <p data-i18n="prP">Ви нічим не ризикуєте: спершу бачите результат, а вже потім вирішуєте.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><h3 data-i18n="s1h">Пишете нам</h3><p data-i18n="s1p">Назва бізнесу, місто й що вам потрібно. Достатньо кількох речень.</p></div>
+        <div class="step"><span class="n">2</span><h3 data-i18n="s2h">Безкоштовний приклад</h3><p data-i18n="s2p">Готуємо демо вашого сайту з вашими послугами, щоб ви побачили, як це виглядатиме.</p></div>
+        <div class="step"><span class="n">3</span><h3 data-i18n="s3h">Домовляємось</h3><p data-i18n="s3p">Якщо подобається, обговорюємо правки, терміни й вартість під ваш обсяг.</p></div>
+        <div class="step"><span class="n">4</span><h3 data-i18n="s4h">Запуск</h3><p data-i18n="s4p">Публікуємо сайт, підключаємо домен і показуємо, як ним користуватися.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="poslugy">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow" data-i18n="svE">Послуги</span><h2 data-i18n="svH">Що ми <em>робимо</em></h2></div>
+        <p data-i18n="svP">Вартість обговорюємо індивідуально, залежно від обсягу.</p>
+      </div>
+      <div class="svc">
+        <div><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="5" y="3" width="20" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 10h10M10 15h10M10 20h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><h3 data-i18n="v1h">Сайт-візитка</h3><p data-i18n="v1p">Одна сторінка: хто ви, що пропонуєте, ціни, відгуки, карта й кнопки зв'язку. Зручна на телефоні.</p></div>
+        <div><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="4" y="6" width="22" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 12h22M10 3v6M20 3v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 19l3 3 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="v2h">Сайт із записом</h3><p data-i18n="v2p">Послуги, майстри й форма запису для барбершопів, салонів і автосервісів. Заявки приходять вам на пошту.</p></div>
+        <div><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M25 15a10 10 0 1 1-3-7.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M25 4v6h-6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3 data-i18n="v3h">Оновлення старого сайту</h3><p data-i18n="v3p">Переробляємо застарілий дизайн, пришвидшуємо завантаження й виправляємо те, що погано виглядає на смартфоні.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakty" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact-card">
+        <div>
+          <span class="eyebrow" data-i18n="cE">Контакти</span>
+          <h2 data-i18n="cH">Покажемо ваш сайт <em>ще до домовленостей</em></h2>
+          <p class="lede" data-i18n="cP">Напишіть назву вашого бізнесу й кілька слів про нього. Приклад підготуємо безкоштовно і без зобов'язань.</p>
+        </div>
+        <div class="list">
+          <div><span class="k" data-i18n="l1">Пошта</span><span class="v" id="vMail">vitrinuastudios@gmail.com</span><button class="copy" type="button" data-t="vMail">Копіювати</button></div>
+          <div><span class="k">Instagram</span><span class="v" id="vIg">@vitryna.studio</span><button class="copy" type="button" data-t="vIg">Копіювати</button></div>
+          <div><span class="k" data-i18n="l3">Місто</span><span class="v" data-i18n="l3v">Київ, працюємо по всій Україні</span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Vitrinua Studios</span><span data-i18n="foot">Демо-роботи є концепціями, назви в них вигадані</span></div></footer>
+
+<script>
+(function(){
+var EN={nav1:"Work",nav2:"Process",nav3:"Services",nav4:"Contact",eyebrow:"Web studio · Kyiv",
+h1:"Websites that work like <em>a fine shop window</em>",
+lede:"We build websites for barbershops, beauty salons, auto shops and stores. Before we agree on anything, we show you for free how yours could look.",
+cta1:"Get a free example",cta2:"See our work",f1b:"Free",f1:"example before any deal",f2b:"Mobile-first",f2:"looks right on any screen",f3b:"Negotiable",f3:"price fits your scope",
+worksE:"Portfolio",worksH:"Demo <em>work</em>",worksP:"Concepts made to show our level. Names and data in them are fictional. Open them on your phone and on desktop.",
+w1i:"Watches · Scroll animation",w1h:"“Anker” watch shop",w1p:"A storytelling site about mechanical watches. As you scroll, the movement opens layer by layer, followed by a six-model collection, a live moon calendar and service booking.",
+t1:"Animation",t2:"Catalog",t3:"Booking form",go:"Open demo",w2i:"Keyboards · 3D",
+w2p:"A keyboard product page with a 3D model that turns to each part as you scroll, with a case colour picker, specs and an order form.",
+t4:"3D model",t5:"Online store",t6:"In English",
+note:"Your business doesn't need 3D or animation. Often one good page with services, prices, photos and a “Call” button is enough, and we build it with the same care.",
+prE:"Process",prH:"From a message to <em>a live site</em>",prP:"No risk on your side: you see the result first and decide after.",
+s1h:"You write to us",s1p:"Business name, city and what you need. A few sentences are enough.",
+s2h:"Free example",s2p:"We prepare a demo of your site with your services, so you can see how it will look.",
+s3h:"We agree",s3p:"If you like it, we discuss changes, timing and a price that fits your scope.",
+s4h:"Launch",s4p:"We publish the site, connect your domain and show you how to use it.",
+svE:"Services",svH:"What we <em>do</em>",svP:"We agree on the price individually, depending on scope.",
+v1h:"Business card site",v1p:"One page: who you are, what you offer, prices, reviews, a map and contact buttons. Works well on a phone.",
+v2h:"Site with booking",v2p:"Services, staff and a booking form for barbershops, salons and auto shops. Requests arrive in your email.",
+v3h:"Refresh of an old site",v3p:"We rework outdated design, speed up loading and fix what looks bad on smartphones.",
+cE:"Contact",cH:"We'll show your site <em>before any deal</em>",cP:"Send us your business name and a few words about it. We'll prepare an example for free, with no obligations.",
+l1:"Email",l3:"City",l3v:"Kyiv, working across Ukraine",foot:"Demo work are concepts, names in them are fictional"};
+var NICHES={uk:["Барбершопи","Салони краси","Автосервіси","Магазини","Кав'ярні","Майстерні","Студії манікюру","Шиномонтажі"],en:["Barbershops","Beauty salons","Auto services","Stores","Cafés","Workshops","Nail studios","Tyre services"]};
+var UI={uk:{copy:"Копіювати",copied:"Скопійовано",sel:"Виділено",nav:"Розділи"},en:{copy:"Copy",copied:"Copied",sel:"Selected",nav:"Sections"}};
+var nodes=[].slice.call(document.querySelectorAll('[data-i18n]'));
+nodes.forEach(function(n){n.setAttribute('data-ua',n.innerHTML)});
+var lang='uk';
+function niches(l){var h=NICHES[l].map(function(t){return '<span>'+t+'</span>'}).join('');document.getElementById('niches').innerHTML=h+h}
+function setLang(l,save){
+  lang=l;
+  nodes.forEach(function(n){var k=n.getAttribute('data-i18n');n.innerHTML=(l==='en'&&EN[k]!==undefined)?EN[k]:n.getAttribute('data-ua')});
+  document.documentElement.lang=l;niches(l);
+  document.querySelector('nav').setAttribute('aria-label',UI[l].nav);
+  document.querySelectorAll('.copy').forEach(function(b){b.textContent=UI[l].copy});
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===l))});
+  if(save){try{localStorage.setItem('vs-lang',l)}catch(e){}}
+}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang,true)})});
+var saved=null;try{saved=localStorage.getItem('vs-lang')}catch(e){}
+setLang(saved==='en'||saved==='uk'?saved:(/^uk/i.test(navigator.language||'uk')?'uk':'en'),false);
+
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.t);
+    var reset=function(){setTimeout(function(){b.textContent=UI[lang].copy},1600)};
+    var fb=function(){var s=getSelection(),r=document.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);b.textContent=UI[lang].sel;reset()};
+    try{navigator.clipboard.writeText(el.textContent).then(function(){b.textContent=UI[lang].copied;reset()},fb)}catch(e){fb()}
+  });
+});
+
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.head,.work,.step,.svc > div,.contact-card,.note').forEach(function(el,i){
+    el.classList.add('rv');
+    if(el.getBoundingClientRect().top>innerHeight){
+      el.classList.add('pre');
+      if(el.classList.contains('step')||el.parentNode.classList.contains('svc')){el.style.transitionDelay=(i%4)*90+'ms'}
+      io.observe(el);
+    }
+  });
+}
+})();
+</script>
+
+</body></html>
